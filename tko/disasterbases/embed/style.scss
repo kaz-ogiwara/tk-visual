@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 400;
+  src:  url(../../../assets/fonts/NotoSansJP/NotoSansJP-Regular.woff2) format('woff2'),
+        url(../../../assets/fonts/NotoSansJP/NotoSansJP-Regular.woff) format('woff'),
+        url(../../../assets/fonts/NotoSansJP/NotoSansJP-Regular.otf) format('opentype');
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", "Helvetica", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "Noto Sans Japanese", "メイリオ", Meiryo, sans-serif;
+}
+
+body,html {
+  width: 100%;
+  height: 100%;
+  font-weight: normal;
+  letter-spacing: 0.03em;
+  line-height: 1.8em;
+  color: #666;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.location {
+  width: 16px !important;
+  height: 16px !important;
+  margin-left: -8px !important;
+  margin-top: -8px !important;
+  border-radius: 8px;
+  border: 2px solid #fdfdfd;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  z-index: 20 !important;
+
+  // Prevent flickering
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  &.t0 {z-index: 10 !important; background-color: #1894b3;}
+  &.t1 {z-index: 20 !important; background-color: #CE6752;}
+}
+
+img {
+  opacity: 0.7 !important;
+}
+
+.leaflet-container {
+  a.leaflet-popup-close-button {
+    top: 8px;
+    right: 8px;
+  }
+
+  .leaflet-popup {
+    font-size: 1.1em;
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 6px;
+
+      .leaflet-popup-content {
+        padding: 0 24px 0 16px;
+    
+        .name {
+          font-weight: bold;
+          font-size: 1.3em;
+          color: #333;
+          margin-bottom: 12px;
+        }
+    
+        .label {
+          color: #aaa;
+          font-size: 0.8em;
+          line-height: 1.6em;
+          margin-top: 8px;
+
+          &.t0 {color: #1894b3;}
+          &.t1 {color: #CE6752;}
+        }
+      }
+    }
+  }
+}
