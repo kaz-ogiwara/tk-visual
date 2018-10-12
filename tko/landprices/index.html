@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+		<meta name="robots" content="noindex,nofollow,noarchive">
+		<meta name="format-detection" content="telephone=no">
+		<meta property="og:url" content="https://toyokeizai.net/sp/visual/tko/landprices/" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="東京都「基準地価」3Dマップ" />
+		<meta property="og:description" content="国土交通省が発表した東京都内の基準地価1,268ヶ所を3Dマップに表現した" />
+		<meta property="og:image" content="https://toyokeizai.net/sp/visual/tko/landprices/img/image_1200_630.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/style.min.css"/>
+		<title>東京都「基準地価」3Dマップ</title>
+	</head>
+	<body>
+    <div id="cover"></div>
+    <div id="container">
+			<div id="header-block">
+				<a href="https://toyokeizai.net/">
+					<img id="img-logo" src="../../assets/img/logo-tko.png" />
+				</a>
+			</div>
+			<div id="title-block">
+				<h1>東京都「基準地価」3Dマップ</h1>
+				<p>国土交通省が発表した東京都内の基準地価1,268ヶ所を3Dマップに表現した</p>
+				<div class="date">2018年10月14日</div>
+			</div>
+			<div id="controls-block">
+				<select id="select-data">
+					<option value="price">最新の基準地価を表示</option>
+					<option value="rate">昨年との比較を表示</option>
+				</select>
+				<select id="select-area">
+					<option value="all">すべての基準地を表示</option>
+					<option value="residence">住宅地のみ表示</option>
+					<option value="business">商業地のみ表示</option>
+				</select>
+			</div>
+			<div id="iframe-block">
+				<div id="no-support">
+					<div class="cover">
+						<p>
+							たいへん申し訳ありませんが、ブラウザが対応しておりません。<br />
+							Chrome、Edge、Firefoxなどのブラウザでアクセスをお願いいたします。
+						</p>
+					</div>
+				</div>
+				<iframe src="embed/" width="100%" height="100%" frameborder="0"></iframe>
+				<button id="button-close"></button>
+			</div>
+			<p class="fullscreen">
+				<a id="fullscreen">全画面で見る</a>
+			</p>
+			<div id="article-block">
+				<section>
+					<p>対象としたデータは2018年および2017年7月1日の基準地価それぞれ1,268ヶ所。データは国土交通省の<a href="http://www.land.mlit.go.jp/webland/" target="_blank">土地総合情報システム</a>から取得した。3D地図のマッピングにはUBERの提供するWebGLフレームワーク<a href="https://deck.gl/" target="_blank">deck.gl</a>を使った。価格は万円単位とし四捨五入。色や高さは値を元にして事前に調整した。</p>
+					<p>基準地は200メートルごとに集計されている。そのため、複数の基準地が近接している場所では、ひとつのバー（六角形）に2つ以上の基準地が内包される。その場合、色や高さは平均の価格や騰落率を元に描画している。それぞれのバーをタップまたはマウスホバーすると、該当する基準地の情報（交通施設と距離、価格、地積、利用現況）が表示される。いずれの情報も国土交通省の前掲のデータセットから取得した。</p>
+					<p>また、地図上側から最新（2018年7月1日）の基準地価と昨年（2017年7月1日）との比較や、土地の用途（全用途、住宅地、商業地）を切り替えることができる。比較マップは昨年に比べて価格が上昇していれば暖色（赤）、下落していれば寒色（青）とした。色が濃く、バーが高いほど上昇／下落幅が大きいことを示す。比較の対象となった基準地は2017年・2018年の両方にデータが存在する1,239ヶ所。</p>
+					<p>解説記事は<a href="https://toyokeizai.net/articles/-/242755" target="_blank">こちら</a></p>
+					<p><a href="img/image_1280_720.png" download="image_1280_720.png" target="_blank">画像をダウンロード</a>（png）</p>
+					<p>ソースコードやデータのダウンロードは<a href="https://github.com/kaz-ogiwara/tk-visual" target="_blank">GitHub</a>から</p>
+					<p>制作：<a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F_%E5%92%8C%E6%A8%B9" target="_blank">荻原 和樹</a></p>
+				</section>
+			</div>
+			<div id="social-block">
+				<a class="fbshare" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices%2f" target="_blank"></a>
+				<a class="twitter" href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices%2f" target="_blank"></a>
+				<a class="gplus"   href="https://plus.google.com/share?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices%2f" target="_blank"></a>
+			</div>
+    </div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="js/script.min.js"></script>
+	</body>
+</html>
