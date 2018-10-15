@@ -27,7 +27,7 @@ $(function(){
       $("#cover").fadeIn("fast")
     ).done(function() {
       $.when(
-        $("#iframe-block").addClass("fullscreen")
+        $("body").addClass("fullscreen")
       ).done(function() {
         $("#cover").fadeOut("fast");
       });
@@ -41,7 +41,7 @@ $(function(){
       $("#cover").fadeIn("fast")
     ).done(function() {
       $.when(
-        $("#iframe-block").removeClass("fullscreen")
+        $("body").removeClass("fullscreen")
       ).done(function() {
         $("#cover").fadeOut("fast");
       });
