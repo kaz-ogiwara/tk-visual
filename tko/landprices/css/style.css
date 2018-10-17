@@ -62,7 +62,11 @@ body {
     margin-bottom: 8px; }
   #container #title-block .date {
     color: #aaa;
-    font-size: 0.9em; }
+    font-size: 0.9em;
+    position: relative; }
+    #container #title-block .date #link-language {
+      position: absolute;
+      right: 0; }
 #container #controls-block {
   margin: 0 auto;
   margin-bottom: 12px;
@@ -187,6 +191,10 @@ body.fullscreen {
     left: 0; }
     body.fullscreen #container #iframe-block #button-close {
       display: block; }
+
+body.en #container #controls-block select {
+  width: 230px;
+  background-position: 98% 150%; }
 
 @media screen and (min-width: 600px) {
   #container #iframe-block {

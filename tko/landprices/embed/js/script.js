@@ -97,19 +97,48 @@ function renderLayer () {
 
             // If handling station
             if (pi[i] === 2) {
-              if (intxt.match(/・/)) td.innerHTML = intxt.replace('・', '<span class="n">から</span>') + '<span>m</span>';
-              if (intxt.match(/（近接）/)) td.innerHTML = intxt.replace('（近接）', '<span>（近接）</span>');
-              if (intxt.match(/（接面）/)) td.innerHTML = intxt.replace('（接面）', '<span>（接面）</span>');
+              var station = intxt;
+              var meters = null;
+
+              if (intxt.match(/・/)) {
+                station = intxt.substr(0, intxt.indexOf("・"));
+                meters = intxt.substr(intxt.indexOf("・") + 1, 99);
+              }
+
+              if (document.getElementsByTagName("body")[0].getAttribute("lang") === "en") {
+                if (meters)                   td.innerHTML = meters + '<span>m from </span>' + station;
+                if (station.match(/（近接）/)) td.innerHTML = 'Close to ' + station.replace('（近接）', '');
+                if (station.match(/（接面）/)) td.innerHTML = 'Adjacent to ' + station.replace('（接面）', '');
+              } else {
+                if (intxt.match(/・/)) td.innerHTML = intxt.replace('・', '<span class="n">から</span>') + '<span>m</span>';
+                if (intxt.match(/（近接）/)) td.innerHTML = intxt.replace('（近接）', '<span>（近接）</span>');
+                if (intxt.match(/（接面）/)) td.innerHTML = intxt.replace('（接面）', '<span>（接面）</span>');
+              }
             }
 
             // If handling price or area size
             if (pi[i] === 3 || pi[i] === 4) {
-              intxt = addCommas(intxt);
-              if (pi[i] === 3 && curDataType === 'price')  intxt += "<span>万円/m²</span>";
-              if (pi[i] === 3 && curDataType === 'rate')   intxt += "<span>％</span>";
+              if (document.getElementsByTagName("body")[0].getAttribute("lang") === "en") {
+                if (pi[i] === 3 && curDataType === 'price')  intxt = addCommas(parseInt(parseFloat(intxt) * 10000).toString());
+                if (pi[i] === 3 && curDataType === 'price')  intxt += "<span>JPY/m²</span>";
+                if (pi[i] === 3 && curDataType === 'rate')   intxt += "<span>%</span>";
+              } else {
+                intxt = addCommas(intxt);
+                if (pi[i] === 3 && curDataType === 'price')  intxt += "<span>万円/m²</span>";
+                if (pi[i] === 3 && curDataType === 'rate')   intxt += "<span>％</span>";
+              }
+
               if (pi[i] === 4) intxt += "<span>m²</span>";
               td.innerHTML = intxt;
               td.classList.add("right");
+            }
+
+            // If handling current usage
+            if (pi[i] === 5) {
+              if (document.getElementsByTagName("body")[0].getAttribute("lang") === "en") {
+                let upper = point[8].charAt(0).toUpperCase() + point[8].slice(1);
+                td.innerHTML = upper;
+              }
             }
 
             tr.appendChild(td);
@@ -156,7 +185,8 @@ function renderLayer () {
 
 
 function loadData(){
-  d3.csv('data/data.csv', (error, response) => {
+  let csvFile = document.getElementsByTagName("body")[0].getAttribute("lang") === "en" ? "data/data-en.csv" : "data/data.csv";
+  d3.csv(csvFile, (error, response) => {
     data = response.map(function(d) {
       if (    (curAreaType === 'all' || (d.areatype && d.areatype == curAreaType))
           &&  d.datatype == curDataType) {
@@ -169,8 +199,8 @@ function loadData(){
           String(d.purpose),
           Number(d.height),
           Number(d.color),
-          Number(d.areatype),
-          Number(d.datatype)
+          String(d.areatype),
+          String(d.datatype)
         ]
       } else {
         return [];
