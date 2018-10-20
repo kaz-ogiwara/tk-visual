@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff) format("woff"), url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.otf) format("opentype");
+  font-display: swap; }
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", "Helvetica", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "Noto Sans Japanese", "メイリオ", Meiryo, sans-serif; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-weight: normal;
+  letter-spacing: 0.03em;
+  line-height: 1.8em;
+  color: #666; }
+
+#map {
+  width: 100%;
+  height: 100%;
+  background-color: #fff; }
+
+.leaflet-container {
+  background-color: rgba(255, 0, 0, 0); }
+
+.shop {
+  width: 32px !important;
+  height: 18.4470588235px !important;
+  margin-left: -16px !important;
+  margin-top: -9.2235294118px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  background: no-repeat center/cover url("../img/workman-logo.png");
+  z-index: 20 !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+  .shop.plus {
+    width: 80px !important;
+    height: 16.7539267016px !important;
+    margin-left: -40px !important;
+    margin-top: -8.3769633508px !important;
+    background: no-repeat center/cover url("../img/workmanplus-logo.png");
+    z-index: 30 !important; }
+
+img {
+  opacity: 0.8 !important;
+  filter: grayscale(80%) !important; }
+
+.leaflet-container a.leaflet-popup-close-button {
+  top: 8px;
+  right: 8px; }
+.leaflet-container .leaflet-popup {
+  font-size: 1.1em; }
+  .leaflet-container .leaflet-popup .leaflet-popup-content-wrapper {
+    border-radius: 6px; }
+    .leaflet-container .leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content {
+      padding: 0 24px 0 16px; }
+      .leaflet-container .leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content .name {
+        font-weight: bold;
+        font-size: 1.3em;
+        color: #333;
+        margin-bottom: 8px; }
+      .leaflet-container .leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content .address {
+        color: #666;
+        font-size: 1em;
+        line-height: 1.6em;
+        margin-top: 8px; }
+      .leaflet-container .leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content .toopen {
+        color: #a42;
+        font-size: 0.9em;
+        line-height: 1.6em;
+        margin-top: 8px; }
+
+@media screen and (max-width: 600px) {
+  #legend {
+    display: none; } }
+
+/*# sourceMappingURL=style.css.map */
