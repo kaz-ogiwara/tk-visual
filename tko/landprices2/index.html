@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<meta property="og:url" content="https://toyokeizai.net/sp/visual/tko/landprices2/" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="全国「基準地価」市区町村平均値マップ" />
+		<meta property="og:description" content="市区町村別の平均基準地価をマッピングした。最新価格と最大30年前のデータを比較可能" />
+		<meta property="og:image" content="https://toyokeizai.net/sp/visual/tko/landprices2/img/image_1200_630.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.min.css"/>
+		<title>全国「基準地価」市区町村平均値マップ</title>
+		<script src="https://tk.ismcdn.jp/sp/js/td_sdk.js" type="text/javascript" async></script>
+		<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-6066080-9']);_gaq.push(['_setDomainName','toyokeizai.net']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+	</head>
+	<body>
+		<script>
+		dataLayer =[{
+		  'pageClass' : '記事ページ（ビジュアル）',
+		  'pageShowDevice' : 'pc',
+		  'pageSkinType' : '',
+		  'articleId' : '246440',
+		  'articlePubdate' : '2018/11/03 07:00:00',
+		  'articlePubFrom' : '2018/11/03 07:00:00',
+		  'articlePubTo' : '',
+		  'articleTitle' : '全市区町村｢地価上昇｣トップ100ランキング',
+		  'articleEditor' : '山田 俊浩',
+		  'articleSeccode' : '',
+		  'articleAuthor' : '荻原 和樹',
+		  'articleCategoryClass2' : '記事',
+		  'articleCategoryClass3' : 'ライフ',
+		  'articleCategoryClass4' : '街･住まい',
+		  'articleGenre' : 'ライフ',
+		  'articleSubGenre' : '',
+		  'articleColumn' : 'House',
+		  'articleCategoryCaption' : '街･住まい',
+		  'articlePageNumber' : '1',
+		  'articlePageLast' : 'yes',
+		  'articlePagePayrole' : 'no',
+		  'articlePageLifetime' : '0',
+		  'articlePageTotal' : '1',
+		  'articlePageVideo' : 'no',
+		  'articlePageSlideshow' : 'no',
+		  'articleClassB' : 'no',
+		  'articleByDepartment' : 'no',
+		  'articleTouchPoint' : 'TKO',
+		  'articleAppointedKeywords' : ['不動産'],
+		  'authorId' : '252',
+		  'authorIFlg' : 'no',
+		  'authorMValue' : '0',
+		  'authorPRatio' : '0.0',
+		  'userAbtest' : TKOLIB.userAbtest||'a'
+		}];
+		</script>
+		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5CJSV5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5CJSV5');</script>
+    <div id="cover"></div>
+    <div id="container">
+			<div id="header-block">
+				<a href="https://toyokeizai.net/">
+					<img id="img-logo" src="../../assets/img/logo-tko.png" />
+				</a>
+			</div>
+			<div id="title-block">
+				<h1>全国「基準地価」市区町村平均値マップ</h1>
+				<p>市区町村別の平均基準地価をマッピングした。最新価格と最大30年前のデータを比較可能</p>
+				<div class="date">2018年11月3日</div>
+			</div>
+			<div id="controls-block">
+				<select id="select-year">
+					<option value="2017">昨年（2017年）と比較</option>
+					<option value="2013">５年前（2013年）と比較</option>
+					<option value="2008">10年前（2008年）と比較</option>
+					<option value="1998">20年前（1998年）と比較</option>
+					<option value="1988">30年前（1988年）と比較</option>
+				</select>
+			</div>
+			<div id="map-block">
+				<div id="map"></div>
+		    <div id="map-cover" class="show">
+		      <p>データをロードしています。<br />しばらくお待ちください。。。</p>
+		    </div>
+				<ul id="legend">
+					<li><div class="circle c1"></div>40%以上</li>
+					<li><div class="circle c2"></div>30% 〜 40%</li>
+					<li><div class="circle c3"></div>20% 〜 30%</li>
+					<li><div class="circle c4"></div>10% 〜 20%</li>
+					<li><div class="circle c5"></div>5% 〜 10%</li>
+					<li><div class="circle c6"></div>1% 〜 5%</li>
+					<li><div class="circle c7"></div>-1% 〜 1%</li>
+					<li><div class="circle c8"></div>-1% 〜 -5%</li>
+					<li><div class="circle c9"></div>-5% 〜 -10%</li>
+					<li><div class="circle c10"></div>-10% 〜 -20%</li>
+					<li><div class="circle c11"></div>-20% 〜 -30%</li>
+					<li><div class="circle c12"></div>-30% 〜 -40%</li>
+					<li><div class="circle c13"></div>-40%以下</li>
+				</ul>
+		    <div id="tooltip"></div>
+				<button id="button-close"></button>
+			</div>
+			<p class="fullscreen">
+				<a id="fullscreen">全画面で見る</a>
+			</p>
+			<div id="article-block">
+				<section>
+					<p>データは土地情報センターが発表した<a href="http://www.lic.or.jp/landinfo/research.html" target="_blank">「都道府県市区町村別・用途別」平均価格・対前年平均変動率表</a>から取得した。地図上側のセレクトボックスから比較対象を選ぶことができる。各市区町村は全用途の変動率を基に色分けされている。市区町村をタップまたはマウスホバーすることで詳細なデータを確認できる。</p>
+					<p>今回のマップとランキングでは、用途別・市区町村別平均価格を計算した後に各年の値を比較して変動率を算出している。元データの計算基準とは異なるため、昨年比の変動率が若干異なる場合がある。期間中に市区町村が合併した場合、原則的に市区町村コードを基準として比較対象を決めている。</p>
+					<p>地図の描画ライブラリには<a href="https://leafletjs.com/" target="_blank">Leaflet.js</a>と<a href="https://d3js.org/" target="_blank">D3.js</a>を使った。各市区町村の領域描画には国土地理院の<a href="http://nlftp.mlit.go.jp/ksj/index.html" target="_blank">国土数値情報ダウンロードサービス</a>から取得したファイルを加工した。</p>
+					<p>昨年（2017年）との比較を見ると、最も平均地価が上がったのは東京でも大阪でもなく、北海道の西部、札幌から車で2時間ほどに位置する虻田郡倶知安町（あぶたぐん・くっちゃんちょう）だ。羊蹄山を望む倶知安町は、隣町のニセコ町や磯谷郡蘭越町などとともに、観光地として有名なニセコエリアの一部に数えられる。近年は、<a href="https://toyokeizai.net/articles/-/175417" target="_blank">外国人観光客のリゾート需要などから地価が上昇傾向</a>。住宅地は30.2％、商業地は45.2％、全用途合算では35.5％の上昇を見せた。</p>
+					<p>一方でマップから全体の傾向を見ると、主に地価が上昇したのは都市部だ。たとえば東京都渋谷区では商業地の伸びが牽引し、全用途で昨年比10％地価が上昇した。他にも仙台、大阪、福岡など地方の中核都市で地価が上昇しているのが見て取れる。地価上昇率のランキングでは、トップ10のうち6区町を政令指定都市が占めている。</p>
+					<p>次は30年前、1988年との比較を見ていこう。バブル期ピークの直前である1988年は「土地の値段は必ず上がる」という土地神話が隆盛を極めていた時期。全国平均の基準地価は1986年から90年のわずか4年間で2.2倍にまで上昇した。最近は地価が「上昇した」というニュースが報じられることも多いが、それでも全国平均地価（全用途）は2018年に13万6800円と、1988年の30万9700円に比べると半分に満たない。当時の水準には遠く及ばないことがわかる。</p>
+					<p>当然ながら、マップを見ても30年前と比べるとほとんどの市区町村で基準地価が下落していることがわかる。2018年と地価が比較可能な1507市区町村のうち、9割を超える1384市区町村で平均地価が下がっている。中でも最も下落率が大きいのは、日本有数のスキーリゾート地として知られる新潟県の南魚沼郡湯沢町。1987年には原田知世主演の映画『私をスキーに連れてって』が公開されるなど、バブル期のスキーブームを背景にリゾートマンションが乱立。1988年の平均地価16万3500円から1993年には最高値19万0100円をつけたが、バブルの崩壊につれて暴落。2018年には2万1100円と30年前の1/7以下となった。</p>
+					<p>データのダウンロード、ソースコード、修正履歴は<a href="https://github.com/kaz-ogiwara/tk-visual" target="_blank">GitHub</a>から</p>
+					<p>制作：<a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F_%E5%92%8C%E6%A8%B9" target="_blank">荻原 和樹</a>（東洋経済オンライン編集部）</p>
+				</section>
+			</div>
+			<div id="social-block">
+				<a class="fbshare" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2f" target="_blank"></a>
+				<a class="twitter" href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2f" target="_blank"></a>
+				<a class="gplus"   href="https://plus.google.com/share?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2f" target="_blank"></a>
+				<a class="line"    href="https://social-plugins.line.me/lineit/share?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2f" target="_blank"></a>
+			</div>
+			<div id="footer-block">
+				<hr>
+				<a href="http://corp.toyokeizai.net/">
+					<img id="img-corporate" src="../../assets/img/logo-corporate.png" alt="東洋経済新報社">
+				</a>
+				<p>Copyright &copy; Toyo Keizai Inc. All Rights Reserved.</p>
+			</div>
+    </div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+		<script src="https://d3js.org/d3.v4.js"></script>
+		<script src="https://unpkg.com/topojson-client@3"></script>
+		<script src="js/script.min.js"></script>
+	</body>
+</html>

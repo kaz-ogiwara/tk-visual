@@ -1,0 +1,318 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff2) format("woff2"), url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff) format("woff"), url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.otf) format("opentype"); }
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", "Helvetica", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, YuGothic, Arial, "Noto Sans Japanese", "メイリオ", Meiryo, sans-serif;
+  font-weight: normal;
+  color: #666;
+  letter-spacing: 0.03em; }
+
+body {
+  width: 100%;
+  line-height: 1.8em;
+  background-color: #fdfdfd; }
+
+#cover {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 1000;
+  display: none; }
+
+#container a {
+  color: #37b;
+  text-decoration: none; }
+#container #header-block, #container #title-block, #container #controls-block, #container #article-block {
+  margin: 0 auto;
+  width: calc(100% - 32px);
+  max-width: 800px; }
+#container #header-block {
+  width: 100%;
+  height: 90px;
+  padding: 8px 16px;
+  top: 0;
+  left: 0;
+  text-align: center;
+  background-color: #fdfdfd;
+  box-shadow: none; }
+  #container #header-block #img-logo {
+    margin: 10px 0;
+    height: calc(100% - 20px); }
+#container #title-block {
+  margin-top: 24px;
+  margin-bottom: 24px; }
+  #container #title-block h1 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px; }
+  #container #title-block p {
+    margin-bottom: 8px; }
+  #container #title-block .date {
+    color: #aaa;
+    font-size: 0.9em;
+    position: relative; }
+    #container #title-block .date #link-language {
+      position: absolute;
+      right: 0; }
+#container #controls-block {
+  margin: 0 auto;
+  margin-bottom: 12px;
+  text-align: center; }
+  #container #controls-block select {
+    width: 240px;
+    height: 32px;
+    margin-bottom: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-size: 10%;
+    background-position: 97% 95%;
+    background-repeat: no-repeat;
+    background-image: url(../img/ic_keyboard_arrow_down_black_24dp_2x.png);
+    font-size: 16px;
+    padding: 4px 0 0 2px;
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #aaa; }
+    #container #controls-block select:hover {
+      cursor: pointer; }
+#container #map-block {
+  width: 100%;
+  height: 480px;
+  transition: none;
+  position: relative; }
+  #container #map-block #map {
+    width: 100%;
+    height: 100%;
+    background-color: #255;
+    background: radial-gradient(circle, #255 200px, #366 400px); }
+  #container #map-block #map-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 5000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all ease 0.2s; }
+    #container #map-block #map-cover p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      color: #fcfcfc;
+      font-size: 0.9em;
+      text-align: center; }
+    #container #map-block #map-cover.show {
+      opacity: 1;
+      pointer-events: auto; }
+  #container #map-block #legend {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px 16px 8px 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    list-style: none;
+    border-radius: 4px;
+    z-index: 500; }
+    #container #map-block #legend li {
+      text-indent: 18px;
+      font-size: 0.7em;
+      color: #666;
+      height: 1.2em;
+      line-height: 1.2em;
+      vertical-align: middle; }
+      #container #map-block #legend li .circle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        top: calc(50% - (10px / 2));
+        left: 4px; }
+        #container #map-block #legend li .circle.c1 {
+          background-color: #CE5A2D; }
+        #container #map-block #legend li .circle.c2 {
+          background-color: #FF8455; }
+        #container #map-block #legend li .circle.c3 {
+          background-color: #FF9972; }
+        #container #map-block #legend li .circle.c4 {
+          background-color: #FFAE8F; }
+        #container #map-block #legend li .circle.c5 {
+          background-color: #FFC3AB; }
+        #container #map-block #legend li .circle.c6 {
+          background-color: #FFD7C8; }
+        #container #map-block #legend li .circle.c7 {
+          background-color: #FAFAFA; }
+        #container #map-block #legend li .circle.c8 {
+          background-color: #B9EDFF; }
+        #container #map-block #legend li .circle.c9 {
+          background-color: #8AC6DA; }
+        #container #map-block #legend li .circle.c10 {
+          background-color: #65A6BC; }
+        #container #map-block #legend li .circle.c11 {
+          background-color: #529FB9; }
+        #container #map-block #legend li .circle.c12 {
+          background-color: #3988A3; }
+        #container #map-block #legend li .circle.c13 {
+          background-color: #1B5467; }
+  #container #map-block #tooltip {
+    position: absolute;
+    bottom: 0px;
+    right: 8px;
+    width: calc(100% - 16px);
+    padding: 4px 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    font-size: 0.8em;
+    transition: all ease 0.2s; }
+    #container #map-block #tooltip #title {
+      font-size: 1.4em;
+      color: #fcfcfc;
+      margin-bottom: 4px;
+      color: rgba(255, 255, 255, 0.96); }
+    #container #map-block #tooltip #subtitle {
+      font-size: 1.0em;
+      margin-bottom: 4px;
+      color: rgba(255, 255, 255, 0.7); }
+    #container #map-block #tooltip table {
+      margin: auto; }
+      #container #map-block #tooltip table th, #container #map-block #tooltip table td {
+        padding: 2px 4px;
+        text-align: right;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1em; }
+        #container #map-block #tooltip table th span, #container #map-block #tooltip table td span {
+          font-size: 0.5em;
+          color: rgba(255, 255, 255, 0.7);
+          margin-left: 2px; }
+          #container #map-block #tooltip table th span.n, #container #map-block #tooltip table td span.n {
+            margin-right: 2px; }
+        #container #map-block #tooltip table th.value, #container #map-block #tooltip table td.value {
+          color: #ccc; }
+          #container #map-block #tooltip table th.value.plus, #container #map-block #tooltip table th.value.plus span, #container #map-block #tooltip table td.value.plus, #container #map-block #tooltip table td.value.plus span {
+            color: #f96; }
+          #container #map-block #tooltip table th.value.minus, #container #map-block #tooltip table th.value.minus span, #container #map-block #tooltip table td.value.minus, #container #map-block #tooltip table td.value.minus span {
+            color: #6af; }
+      #container #map-block #tooltip table th {
+        padding: 0 4px;
+        font-size: 1.0em;
+        color: rgba(255, 255, 255, 0.7); }
+    #container #map-block #tooltip.show {
+      bottom: 16px;
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 3000; }
+  #container #map-block #button-close {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    background: no-repeat center/80% url("../../../assets/img/icon-close.svg");
+    background-color: #fefefe;
+    z-index: 1000;
+    cursor: pointer;
+    display: none; }
+#container p.fullscreen {
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9em; }
+  #container p.fullscreen a {
+    cursor: pointer; }
+#container #article-block p {
+  margin-bottom: 1em; }
+#container #social-block {
+  display: flex;
+  width: 330px;
+  margin: 48px auto 48px auto; }
+  #container #social-block a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin: 0 16px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat; }
+    #container #social-block a.fbshare {
+      background-image: url("../../../assets/img/social-icon-fbshare.svg"); }
+    #container #social-block a.twitter {
+      background-image: url("../../../assets/img/social-icon-twitter.svg"); }
+    #container #social-block a.gplus {
+      background-image: url("../../../assets/img/social-icon-gplus.svg");
+      background-size: 90%; }
+    #container #social-block a.line {
+      background-image: url("../../../assets/img/social-icon-line.png"); }
+#container #footer-block {
+  color: #aaa;
+  text-align: center;
+  height: 120px;
+  font-size: 0.8em; }
+  #container #footer-block hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin-top: 24px;
+    margin-bottom: 32px; }
+  #container #footer-block #img-corporate {
+    width: 140px;
+    opacity: 0.8; }
+
+body.fullscreen {
+  overflow-y: hidden; }
+  body.fullscreen #container #map-block {
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0; }
+    body.fullscreen #container #map-block #button-close {
+      display: block; }
+    body.fullscreen #container #map-block #legend {
+      top: 68px; }
+
+@media screen and (min-width: 600px) {
+  #container #map-block {
+    height: 580px; }
+    #container #map-block #legend li {
+      font-size: 0.8em; }
+    #container #map-block #tooltip {
+      padding: 8px 16px;
+      width: auto; }
+      #container #map-block #tooltip #title {
+        font-size: 1.6em; }
+      #container #map-block #tooltip #subtitle {
+        font-size: 1.1em; }
+      #container #map-block #tooltip table td {
+        font-size: 1.2em; } }
+@media screen and (min-width: 900px) {
+  #container #map-block {
+    height: 680px; } }
+
+/*# sourceMappingURL=style.css.map */
