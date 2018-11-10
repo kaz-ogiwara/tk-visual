@@ -2,6 +2,7 @@ var kMap;
 var geojsonLayers = [];
 var kData;
 var kMain;
+var kNamesE;
 var kDoneCount = 0;
 var curTarget;
 var curColor;
@@ -16,6 +17,13 @@ function addCommas(num){
 function drawMap(){
   for(let i = 1; i <= 47; i++){
     addPrefecture(i);
+  }
+
+  if ($("body").hasClass("en")) {
+    d3.json("data/names_en.json", function(error, json) {
+      if (error) throw error;
+      kNamesE = json;
+    });
   }
 }
 
@@ -55,11 +63,9 @@ function highlightFeature(e){
   // N03_007: 市区町村コード（5桁）
 
   let props  = layer.feature.properties;
-  let prefName = props.N03_001;
-  let cityName = "";
+  let cityName = props.N03_001;
       if (props.N03_003 != null) cityName = cityName + " " + props.N03_003;
       if (props.N03_004 != null) cityName = cityName + " " + props.N03_004;
-      cityName.slice(1);
   let cityCode = props.N03_007;
 
   kData.forEach(function(city){
@@ -84,41 +90,53 @@ function highlightFeature(e){
         }
       }
 
+      let yearSuffix      = $("body").hasClass("en") ? "" : "年";
+      let priceSuffix     = $("body").hasClass("en") ? "JPY / m<sup>2</sup>" : "円/㎡";
+      let residenceLabel  = $("body").hasClass("en") ? "Residence:" : "住宅地：";
+      let businessLabel   = $("body").hasClass("en") ? "Business:" : "商業地：";
+      let overallLabel    = $("body").hasClass("en") ? "Overall:" : "全用途：";
+
       if (kMain) {
         kMain.forEach(function(mainCity){
           if (mainCity[0] == cityCode) {
-            prices[0] = addCommas(mainCity[1]) + '<span>円/㎡</span>';
-            prices[1] = addCommas(mainCity[2]) + '<span>円/㎡</span>';
-            prices[2] = addCommas(mainCity[3]) + '<span>円/㎡</span>';
+            prices[0] = addCommas(mainCity[1]) + '<span>' + priceSuffix + '</span>';
+            prices[1] = addCommas(mainCity[2]) + '<span>' + priceSuffix + '</span>';
+            prices[2] = addCommas(mainCity[3]) + '<span>' + priceSuffix + '</span>';
           }
         });
       }
 
+      if (kNamesE) {
+        if (kNamesE[cityCode]) {
+          cityName = kNamesE[cityCode];
+        }
+      }
+
       let html = ''
-          + '<div id="title">' + prefName + " " + cityName + '</div>'
+          + '<div id="title">' + cityName + '</div>'
           + '<table>'
             + '<tr>'
               + '<th></th>'
-              + '<th>2018年</th>'
-              + '<th>' + $("#select-year").val() + '年</th>'
+              + '<th>2018' + yearSuffix + '</th>'
+              + '<th>' + $("#select-year").val() + yearSuffix + '</th>'
               + '<th></th>'
             + '</tr>'
             + '<tr>'
-              + '<td>住宅地：</td>'
+              + '<td>' + residenceLabel + '</td>'
               + '<td class="price">' + prices[0] + '</td>'
-              + '<td class="price">' + pricep[0] + '<span>円/㎡</span></td>'
+              + '<td class="price">' + pricep[0] + '<span>' + priceSuffix + '</span></td>'
               + '<td class="value' + signs[0] + '">' + values[0] + '</td>'
             + '</tr>'
             + '<tr>'
-              + '<td>商業地：</td>'
+              + '<td>' + businessLabel + '</td>'
               + '<td class="price">' + prices[1] + '</td>'
-              + '<td class="price">' + pricep[1] + '<span>円/㎡</span></td>'
+              + '<td class="price">' + pricep[1] + '<span>' + priceSuffix + '</span></td>'
               + '<td class="value' + signs[1] + '">' + values[1] + '</td>'
             + '</tr>'
             + '<tr>'
-              + '<td>全用途：</td>'
+              + '<td>' + overallLabel + '</td>'
               + '<td class="price">' + prices[2] + '</td>'
-              + '<td class="price">' + pricep[2] + '<span>円/㎡</span></td>'
+              + '<td class="price">' + pricep[2] + '<span>' + priceSuffix + '</span></td>'
               + '<td class="value' + signs[2] + '">' + values[2] + '</td>'
             + '</tr>'
           + '</table>'

@@ -67,6 +67,7 @@ body {
     position: relative; }
     #container #title-block .date #link-language {
       position: absolute;
+      top: 0;
       right: 0; }
 #container #controls-block {
   margin: 0 auto;

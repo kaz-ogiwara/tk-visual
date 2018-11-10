@@ -1,0 +1,142 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<meta property="og:url" content="https://toyokeizai.net/sp/visual/tko/landprices2/en.html" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Average Land Prices Map of Japanese Municipalities" />
+		<meta property="og:description" content="Comparison between the latest price and up to 30 years ago" />
+		<meta property="og:image" content="https://toyokeizai.net/sp/visual/tko/landprices2/img/image_1200_630.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.min.css"/>
+		<title>Average Land Prices Map of Japanese Municipalities</title>
+		<script src="https://tk.ismcdn.jp/sp/js/td_sdk.js" type="text/javascript" async></script>
+		<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-6066080-9']);_gaq.push(['_setDomainName','toyokeizai.net']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+	</head>
+	<body class="en">
+		<script>
+		dataLayer =[{
+		  'pageClass' : '記事ページ（ビジュアル）',
+		  'pageShowDevice' : 'pc',
+		  'pageSkinType' : '',
+		  'articleId' : '246440',
+		  'articlePubdate' : '2018/11/03 07:00:00',
+		  'articlePubFrom' : '2018/11/03 07:00:00',
+		  'articlePubTo' : '',
+		  'articleTitle' : '全市区町村｢地価上昇｣トップ100ランキング',
+		  'articleEditor' : '山田 俊浩',
+		  'articleSeccode' : '',
+		  'articleAuthor' : '荻原 和樹',
+		  'articleCategoryClass2' : '記事',
+		  'articleCategoryClass3' : 'ライフ',
+		  'articleCategoryClass4' : '街･住まい',
+		  'articleGenre' : 'ライフ',
+		  'articleSubGenre' : '',
+		  'articleColumn' : 'House',
+		  'articleCategoryCaption' : '街･住まい',
+		  'articlePageNumber' : '1',
+		  'articlePageLast' : 'yes',
+		  'articlePagePayrole' : 'no',
+		  'articlePageLifetime' : '0',
+		  'articlePageTotal' : '1',
+		  'articlePageVideo' : 'no',
+		  'articlePageSlideshow' : 'no',
+		  'articleClassB' : 'no',
+		  'articleByDepartment' : 'no',
+		  'articleTouchPoint' : 'TKO',
+		  'articleAppointedKeywords' : ['不動産'],
+		  'authorId' : '252',
+		  'authorIFlg' : 'no',
+		  'authorMValue' : '0',
+		  'authorPRatio' : '0.0',
+		  'userAbtest' : TKOLIB.userAbtest||'a'
+		}];
+		</script>
+		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5CJSV5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5CJSV5');</script>
+    <div id="cover"></div>
+    <div id="container">
+			<div id="header-block">
+				<a href="https://toyokeizai.net/">
+					<img id="img-logo" src="../../assets/img/logo-tko.png" />
+				</a>
+			</div>
+			<div id="title-block">
+				<h1>Average Land Prices Map of Japanese Municipalities</h1>
+				<p>Comparison between the latest price and up to 30 years ago</p>
+				<div class="date">11 November 2018
+					<div id="link-language"><a href="./">JAPANESE</a></div>
+				</div>
+			</div>
+			<div id="controls-block">
+				Compare with:
+				<select id="select-year">
+					<option value="2017">The last year (2017)</option>
+					<option value="2013">5 years ago (2013)</option>
+					<option value="2008">10 years ago (2008)</option>
+					<option value="1998">20 years ago (1998)</option>
+					<option value="1988">30 years ago (1988)</option>
+				</select>
+			</div>
+			<div id="map-block">
+				<div id="map"></div>
+		    <div id="map-cover" class="show">
+		      <p>Loading map data.<br />Please wait...</p>
+		    </div>
+				<ul id="legend">
+					<li><div class="circle c1"></div>40% - </li>
+					<li><div class="circle c2"></div>30% - 40%</li>
+					<li><div class="circle c3"></div>20% - 30%</li>
+					<li><div class="circle c4"></div>10% - 20%</li>
+					<li><div class="circle c5"></div>5% - 10%</li>
+					<li><div class="circle c6"></div>1% - 5%</li>
+					<li><div class="circle c7"></div>-1% - 1%</li>
+					<li><div class="circle c8"></div>-1% - -5%</li>
+					<li><div class="circle c9"></div>-5% - -10%</li>
+					<li><div class="circle c10"></div>-10% - -20%</li>
+					<li><div class="circle c11"></div>-20% - -30%</li>
+					<li><div class="circle c12"></div>-30% - -40%</li>
+					<li><div class="circle c13"></div>- -40%</li>
+				</ul>
+		    <div id="tooltip"></div>
+				<button id="button-close"></button>
+			</div>
+			<p class="fullscreen">
+				<a id="fullscreen">Show full screen</a>
+			</p>
+			<div id="article-block">
+				<section>
+					<p>The data was retrieved from <a href="http://www.lic.or.jp/landinfo/research.html" target="_blank">Land Information Center</a>. You can choose the years to compare from the select box above the map. Each city / town/ village is colored by overall change rate. Details is shown by tapping or mouse hovering on each municipality.</p>
+					<p>Accurately, this map uses a different way to calculate the change rate from the original data source. Thus change rates from the last year might be different from the source PDF file. The comparison pairs are decided according to municipality codes. If a municipality formed a merger with another and no longer have comparison pair, it is colored gray.</p>
+					<p>JavaScript libraries <a href="https://leafletjs.com/" target="_blank">Leaflet.js</a> and <a href="https://d3js.org/" target="_blank">D3.js</a> were used to draw the map. Each municipality's border line data was obtained from <a href="http://nlftp.mlit.go.jp/ksj/index.html" target="_blank">MLIT of Japan</a> [Japanese].</p>
+					<p>The municipality with the highest increasing rate compared with the last year is Kutchan Town, Hokkaido. This town is known as the part of Niseko area, a famous ski resort. The town has experienced increase of its land price over the course of these several years, due to high demand of foreign tourists staying for a long time.</p>
+					<p>On the other hand, looking at the overall trend from the map, mainly urban area increased its land price. For example, Shibuya Ward, Tokyo, one of the most famous commercial and business center in Japan, raised its overall land prices by 10%. Regional core cities, such as Sendai, Osaka, or Fukuoka, also experienced land price increasing.</p>
+					<p>You can compare the latest price with the past, up to 30 years ago (1988). In 1988, Japan was in the midst of asset price bubble, where people believed that land prices always increase. The nationwide average land price rose to 2.2 times between 1986 and 1990. We can see that most municipalities decreased land price in this 30 years. The worst case is Yuzawa Town, a small town in Niigata that used to be known as ski resort. During a ski boom in late 1980's, lots of holiday apartments were built (they are called "resort mansion" in Japan). While these apartments had been quite popular during asset price bubble, their price rapidly shrunk after the bubble collapsed.</p>
+					<p>Refer to <a href="https://github.com/kaz-ogiwara/tk-visual" target="_blank">GitHub</a> to download data and see the source code.</p>
+					<p>Created by: <a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F_%E5%92%8C%E6%A8%B9" target="_blank">Kazuki OGIWARA</a> (Toyo Keizai Online)</p>
+				</section>
+			</div>
+			<div id="social-block">
+				<a class="fbshare" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2fen.html" target="_blank"></a>
+				<a class="twitter" href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2fen.html" target="_blank"></a>
+				<a class="gplus"   href="https://plus.google.com/share?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2fen.html" target="_blank"></a>
+				<a class="line"    href="https://social-plugins.line.me/lineit/share?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flandprices2%2fen.html" target="_blank"></a>
+			</div>
+			<div id="footer-block">
+				<hr>
+				<a href="http://corp.toyokeizai.net/">
+					<img id="img-corporate" src="../../assets/img/logo-corporate.png" alt="東洋経済新報社">
+				</a>
+				<p>Copyright &copy; Toyo Keizai Inc. All Rights Reserved.</p>
+			</div>
+    </div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+		<script src="https://d3js.org/d3.v4.js"></script>
+		<script src="https://unpkg.com/topojson-client@3"></script>
+		<script src="js/script.min.js"></script>
+	</body>
+</html>
