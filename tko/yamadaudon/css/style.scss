@@ -1,0 +1,351 @@
+@charset "UTF-8";
+
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/notosansjapanese/v6/NotoSansJP-Regular.otf) format('opentype');
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", "Helvetica", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, YuGothic, Arial, "Noto Sans Japanese", "メイリオ", Meiryo, sans-serif;
+  font-weight: normal;
+  color: #666;
+  letter-spacing: 0.03em;
+}
+
+body {
+  width: 100%;
+  line-height: 1.8em;
+  background-color: #fdfdfd;
+}
+
+a {
+  color: #37b;
+  text-decoration: none;
+}
+
+#container {
+  position: relative;
+
+  #title-block, #controls-block, #article-block, #social-block, #footer-block {
+    margin: 0 auto;
+    width: calc(100% - 32px);
+    max-width: 800px;
+  }
+
+  #cover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(255,255,255);
+    z-index: 2000;
+    display: none;
+  }
+
+  #header-block {
+    width: 100%;
+    height: 90px;
+    padding: 8px 16px;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background-color: #fdfdfd;
+    box-shadow: none;
+
+    #img-logo {
+      margin: 10px 0;
+      height: calc(100% - 20px);
+    }
+  }
+
+  #title-block {
+    margin-top: 24px;
+    margin-bottom: 16px;
+
+    h1 {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    .date {
+      color: #aaa;
+      font-size: 0.9em;
+      position: relative;
+    }
+  }
+
+  #controls-block {
+    margin-bottom: 16px;
+    padding: 12px;
+
+    #input-shops {
+      display: block;
+      margin: auto;
+      width: 100%;
+      max-width: 400px;
+      padding-left: 24px;
+      font-size: 1em;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      transition: all ease 0.2s;
+      background-image: url('../img/icon-search.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: 0 1px;
+
+      &:focus {
+        border-bottom: 2px solid #36a;
+      }
+    }
+
+    #shop-suggestions {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      margin-top: 4px;
+      z-index: 1200;
+      width: calc(100% - 56px);
+      max-width: 400px;
+      background-color: #fafafa;
+      webkit-box-shadow: 2px 4px 4px 0px rgba(0,0,0,0.3);
+      -moz-box-shadow: 2px 4px 4px 0px rgba(0,0,0,0.3);
+      box-shadow: 2px 4px 4px 0px rgba(0,0,0,0.3);
+      display: none;
+
+      &.show {
+        display: block;
+      }
+
+      div {
+        width: 100%;
+        height: 28px;
+        padding: 0 4px;
+        border-bottom: 1px solid #eee;
+
+        &.selected {
+          background-color: #58b;
+          color: #fafafa;
+        }
+      }
+    }
+  }
+
+  #map-block {
+    width: 100%;
+    height: 480px;
+    transition: none;
+    position: relative;
+
+    &.fullscreen {
+      z-index: 100;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+
+      #button-close {
+        display: block;
+      }
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+
+      img {
+        opacity: 0.8 !important;
+        filter: grayscale(60%) !important;
+      }
+
+      .leaflet-div-icon {
+        $r: 40px;
+        width: $r !important;
+        height: $r !important;
+        margin-top:  calc(-0.5 * #{$r}) !important;
+        margin-left: calc(-0.5 * #{$r}) !important;
+        border: none;
+        background-color: transparent;
+        background-image: url('../img/yamadaudon_logo.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+      }
+
+      .leaflet-popup-content-wrapper {
+        padding: 4px 8px;
+
+        .name {
+          color: #333;
+          font-size: 1.2em;
+          font-weight: bold;
+          margin-bottom: 4px;
+        }
+      }
+
+      a.leaflet-popup-close-button {
+        top: 4px !important;
+        right: 4px !important;
+      }
+
+      .leaflet-bottom {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+
+    #button-close {
+      position: fixed;
+      top: 8px;
+      right: 8px;
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      background: no-repeat center/80% url('../../../assets/img/icon-close.svg');
+      background-color: #fefefe;
+      z-index: 1000;
+      cursor: pointer;
+      display: none;
+    }
+  }
+
+  p.fullscreen {
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9em;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  #article-block {
+    p {
+      margin-bottom: 1em;
+    }
+  }
+
+  #social-block {
+    display: flex;
+    width: 330px;
+    margin: 48px auto 48px auto;
+
+    a {
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      margin: 0 16px;
+
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      &.fbshare {background-image: url('../../../assets/img/social-icon-fbshare.svg');}
+      &.twitter {background-image: url('../../../assets/img/social-icon-twitter.svg');}
+      &.gplus   {background-image: url('../../../assets/img/social-icon-gplus.svg'); background-size: 90%;}
+      &.line    {background-image: url('../../../assets/img/social-icon-line.png');}
+    }
+  }
+
+  #footer-block {
+    color: #aaa;
+    text-align: center;
+    height: 120px;
+    font-size: 0.8em;
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin-top: 24px;
+      margin-bottom: 32px;
+    }
+
+    #img-corporate {
+      width: 140px;
+      opacity: 0.8;
+    }
+  }
+}
+
+
+
+// When full screen
+body.fullscreen {
+  overflow-y: hidden;
+
+  #container {
+    #controls-block {
+      position: fixed;
+      z-index: 1900;
+      border-radius: 24px;
+      padding: 16px;
+      height: 48px;
+      top: 8px;
+      left: 0;
+      right: 0;
+      width: calc(100% - 128px);
+      background-color: #fefefe;
+      margin: auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+
+      #input-shops {
+        border: none;
+      }
+    }
+
+    #map-block {
+      z-index: 100;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+
+      #button-close {
+        display: block;
+      }
+    }
+  }
+}
+
+
+// Tablet
+@media screen and (min-width: 600px) {
+  #container {
+    #map-block {
+      height: 580px;
+    }
+  }
+}
+
+// PC
+@media screen and (min-width: 900px) {
+  #container {
+    #map-block {
+      height: 680px;
+    }
+  }
+}
