@@ -1,0 +1,128 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<meta property="og:url" content="https://toyokeizai.net/sp/visual/tko/librarians/" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="都道府県別「図書館司書」の非正規雇用" />
+		<meta property="og:description" content="1999〜2015年（最新年）における図書館司書の非常勤比率をマップとグラフで可視化した。" />
+		<meta property="og:image" content="https://toyokeizai.net/sp/visual/tko/librarians/img/image_1200_630.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/style.min.css"/>
+		<title>都道府県別「図書館司書」の非正規雇用</title>
+	</head>
+	<body>
+    <div id="container">
+			<div id="header-block">
+				<a href="https://toyokeizai.net/">
+					<img id="img-logo" src="../../assets/img/logo-tko-white.png" />
+				</a>
+			</div>
+			<div id="title-block">
+				<h1>都道府県別「図書館司書」の非正規雇用</h1>
+				<p>1999〜2015年（最新年）における図書館司書の非常勤比率をマップとグラフで可視化した。</p>
+				<div class="date">2019年1月26日</div>
+			</div>
+			<div id="map-block">
+				<svg id="map"></svg>
+				<div id="map-year">
+					<span id="map-year-num"></span>年
+				</div>
+				<div id="map-legend"></div>
+				<div class="navigation show"><p>都道府県をタップすると<br>グラフが更新されます</p></div>
+			</div>
+			<div id="canvas-block">
+				<div id="canvas">
+					<div id="canvas-touch-areas">
+						<div class="touch-area half"></div>
+						<div class="touch-area"></div>
+						<div class="touch-area"></div>
+						<div class="touch-area"></div>
+						<div class="touch-area"></div>
+						<div class="touch-area half"></div>
+					</div>
+				</div>
+				<div class="navigation show"><p>グラフをタップすると<br>マップが更新されます</p></div>
+			</div>
+			<div id="table-block">
+				<h4><span id="dt-pref">全国</span> - <span id="dt-year">2015</span>年</h4>
+				<table id="data-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>常勤</th>
+							<th>兼務</th>
+							<th>非常勤</th>
+							<th>計</th>
+							<th>非常勤<br />比率</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>男性</th>
+							<td id="dt-m-f"></td>
+							<td id="dt-m-a"></td>
+							<td id="dt-m-p"></td>
+							<td id="dt-m-t"></td>
+							<td id="dt-m-r"></td>
+						</tr>
+						<tr>
+							<th>女性</th>
+							<td id="dt-f-f"></td>
+							<td id="dt-f-a"></td>
+							<td id="dt-f-p"></td>
+							<td id="dt-f-t"></td>
+							<td id="dt-f-r"></td>
+						</tr>
+						<tr>
+							<th>計</th>
+							<td id="dt-t-f"></td>
+							<td id="dt-t-a"></td>
+							<td id="dt-t-p"></td>
+							<td id="dt-t-t"></td>
+							<td id="dt-t-r"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="button-block">
+				<button id="button-download-image">グラフ画像をダウンロード</button>
+				<a href="./data/data.json" download="tkonline-librarians-data">データをダウンロード</a>
+			</div>
+			<div id="article-block">
+				<section>
+					<p>地図内の都道府県をタップすると、その都道府県のデータがグラフ上で強調される。グラフの特定期間をタップすると、地図上の色分けがその年のデータに更新される。「グラフ画像をダウンロード」ボタンを押すと、都道府県の強調も含めてPNG形式でグラフがダウンロードできる。</p>
+					<p>データは文部科学省<a href="http://www.lic.or.jp/landinfo/research.html" target="_blank">「社会教育調査」</a>から取得した。エクセルファイルでデータが開示されている1999年度から2015年度までをデータ化（この調査は通常3年おきだが、2015年度は1年延期された）。2003年には指定管理者制度が施行され、2011年度からは指定管理者の雇用者数がデータに加わったが、常勤・非常勤の区別がないため非正規雇用率の計算には含めていない。都道府県地図は<a href="http://www.naturalearthdata.com/" target="_blank">Natural Earth</a>提供のshpファイルをtopojsonに変換した。グラフの描画には<a href="https://p5js.org/" target="_blank">P5.js</a>を使った。</p>
+					<p>図書館司書の非常勤職員は16年間で劇的に増えたことがわかる。全国の非常勤司書は1999年度の2272名から2015年度には9593名まで増加。全体の司書数は増えているものの、常勤（専任）司書が4分の1程度減少した（7345名から5410名）のに対して、非常勤は4倍超の伸びを示す。この傾向はほぼすべての都道府県で共通する。</p>
+					<p>一方で地図からは、非常勤職員への「依存」度合いに地域差があることが見て取れる。たとえば青森県では2015年度の非常勤比率は4割程度にとどまるが、長崎県では8割を超える。専任司書の数はどちらの県も30名程度だが、非常勤司書数には6倍もの開きがあった。</p>
+					<p>また、こうしたデータを見る中で見過ごせないのが男女差だ。男女雇用機会均等法が施行されて久しいとはいえ、日本の労働市場においていまだに女性は弱い立場に置かれがちだ。上林陽治『非正規公務員の現在 深化する格差』（日本評論社、2015年）では、公務員の正規・非正規職員における賃金格差に関して「非正規公務員の四人のうち三人は女性である。したがってこの賃金格差は、勤務形態の差異を装った男女間の間接差別ともいえる」と表現されている。</p>
+					<p>実際に、図書館司書においても同様の現象が見られる。2015年度のデータを集計すると、男性の非常勤比率33％に対して女性は67％。青森・沖縄を除く45都道府県で女性の方が非常勤比率が高い。この男女差が最も顕著な香川県では、非常勤の司書92名のうち91名が女性だ。</p>
+					<p><a href="img/gendergap.png" target="_blank"><img src="img/gendergap.png" /></a></p>
+					<p>図書館における司書の担当業務はレファレンスや蔵書の選定など幅広く、図書館制度を支える専門職であるといえる。毎年1万人近くが司書資格を取得するなど、資格としての人気も高い。このまま待遇悪化を放置することは、日本の図書館制度の根幹に影響を与えかねない。</p>
+					<p>ソースコード、修正履歴は<a href="https://github.com/kaz-ogiwara/tk-visual" target="_blank">GitHub</a>から</p>
+					<p>制作：<a href="https://toyokeizai.net/list/author/%E8%8D%BB%E5%8E%9F_%E5%92%8C%E6%A8%B9" target="_blank">荻原 和樹</a>（東洋経済オンライン編集部）</p>
+				</section>
+			</div>
+			<div id="social-block">
+				<a class="fbshare" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flibrarians%2f" target="_blank"></a>
+				<a class="twitter" href="https://twitter.com/intent/tweet?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flibrarians%2f" target="_blank"></a>
+				<a class="gplus"   href="https://plus.google.com/share?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flibrarians%2f" target="_blank"></a>
+				<a class="line"    href="https://social-plugins.line.me/lineit/share?url=https%3a%2f%2ftoyokeizai%2enet%2fsp%2fvisual%2ftko%2flibrarians%2f" target="_blank"></a>
+			</div>
+			<div id="footer-block">
+				<hr>
+				<a href="http://corp.toyokeizai.net/">
+					<img id="img-corporate" src="../../assets/img/logo-corporate-white.png" alt="東洋経済新報社">
+				</a>
+				<p>Copyright &copy; Toyo Keizai Inc. All Rights Reserved.</p>
+			</div>
+    </div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+		<script src="js/script.min.js"></script>
+	</body>
+</html>
